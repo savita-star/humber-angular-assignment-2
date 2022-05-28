@@ -1,17 +1,18 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { ProductsService } from 'src/app/services/products.service';
 
 @Component({
   selector: 'search-bar',
   templateUrl: './search-bar.component.html',
-  styleUrls: ['./search-bar.component.scss']
+  styleUrls: ['./search-bar.component.scss'],
 })
 export class SearchBarComponent implements OnInit {
+  @Output() textEntered: EventEmitter<string> = new EventEmitter();
+  constructor(private productService: ProductsService) {}
 
-  @Output() textEntered: EventEmitter<string> = new EventEmitter()
-  constructor() { }
+  ngOnInit(): void {}
 
-  ngOnInit(): void {
-    
+  onInput(event: InputEvent | any): void {
+    this.productService.filterProducts(event?.target?.value ?? '');
   }
-
 }
