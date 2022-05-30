@@ -45,7 +45,7 @@ export class ProductsService {
   filterProducts(name: string) {
     if (name) {
       this.listOfProducts = this.listOfProducts.filter((listItem) =>
-        listItem.name.includes(name)
+        listItem.name.toLowerCase().includes(name.toLowerCase())
       );
     } else {
       this.listOfProducts = this.copyListOfProducts;
